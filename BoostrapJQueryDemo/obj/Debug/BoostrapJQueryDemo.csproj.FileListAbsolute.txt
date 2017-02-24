@@ -4,3 +4,9 @@ D:\Xsis\05. Training\01. Bootstrap and JQuery\01. Projects\BoostrapJQueryDemo\Bo
 D:\Xsis\05. Training\01. Bootstrap and JQuery\01. Projects\BoostrapJQueryDemo\BoostrapJQueryDemo\obj\Debug\BoostrapJQueryDemo.csprojResolveAssemblyReference.cache
 D:\Xsis\05. Training\01. Bootstrap and JQuery\01. Projects\BoostrapJQueryDemo\BoostrapJQueryDemo\obj\Debug\BoostrapJQueryDemo.dll
 D:\Xsis\05. Training\01. Bootstrap and JQuery\01. Projects\BoostrapJQueryDemo\BoostrapJQueryDemo\obj\Debug\BoostrapJQueryDemo.pdb
+D:\Projects\GitHub\BootstrapJQueryProj\BoostrapJQueryDemo\bin\BoostrapJQueryDemo.dll.config
+D:\Projects\GitHub\BootstrapJQueryProj\BoostrapJQueryDemo\bin\BoostrapJQueryDemo.dll
+D:\Projects\GitHub\BootstrapJQueryProj\BoostrapJQueryDemo\bin\BoostrapJQueryDemo.pdb
+D:\Projects\GitHub\BootstrapJQueryProj\BoostrapJQueryDemo\obj\Debug\BoostrapJQueryDemo.csprojResolveAssemblyReference.cache
+D:\Projects\GitHub\BootstrapJQueryProj\BoostrapJQueryDemo\obj\Debug\BoostrapJQueryDemo.dll
+D:\Projects\GitHub\BootstrapJQueryProj\BoostrapJQueryDemo\obj\Debug\BoostrapJQueryDemo.pdb

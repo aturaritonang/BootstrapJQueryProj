@@ -25,8 +25,8 @@
                     <div class="form-group">
                         <label for="gender-radios">Gender</label>
                         <div id="gender-radios" name="gender-radios">
-                            <label class="checkbox-inline"><input type="radio" name="gender-radios" id="1" value="Male"> Male</label>
-                            <label class="checkbox-inline"><input type="radio" name="gender-radios" id="0" value="Female"> Female</label>
+                            <label class="checkbox-inline"><input type="radio" name="gender-radios" id="gender-radios-1" value="Male"> Male</label>
+                            <label class="checkbox-inline"><input type="radio" name="gender-radios" id="gender-radios-0" value="Female"> Female</label>
                         </div>
                     </div>
                 </div>
@@ -44,8 +44,8 @@
                     </div>
                     <div class="form-group">
                         <label for="activation-checkbox">Activation</label>
-                        <div id="activation-checkbox" name="activation-checkbox">
-                            <label class="checkbox-inline"><input type="checkbox" name="activation-checkbox"> Actived</label>
+                        <div name="activation-checkbox">
+                            <label class="checkbox-inline"><input type="checkbox" id="activation-checkbox" name="activation-checkbox"> Actived</label>
                         </div>
                     </div>
                 </div>
@@ -75,6 +75,7 @@
 </body>
 </html>
 <script>
+    var selectedId = 0;
     $(document).ready(function () {
         $.getJSON("Data/jobtitles.json", function (data) {
             var optJobs = [];
@@ -87,7 +88,7 @@
         $.getJSON("Data/skills.json", function (data) {
             var cbSkills = [];
             $.each(data, function (key, val) {
-                cbSkills.push('<label class="checkbox-inline" style="padding-right:20px;"><input type="checkbox" id="inlineCheckbox' + val.ID + '" value="option' + val.ID + '">' + val.Skill + '</label>');
+                cbSkills.push('<label class="checkbox-inline" style="padding-right:20px;"><input type="checkbox" id="inlineCheckbox' + val.ID + '" value="' + val.ID + '">' + val.Skill + '</label>');
             });
             $("#checkbox-skills").append(cbSkills);
         });
@@ -98,29 +99,55 @@
             $("#job-title").val("0");
             //$(this).attr('disabled', 'disabled');
         });
-
-        $(".btn-save").click(function () {
-            var vFirstName = $("#first-name").val();
-            var vLastName = $("#last-name").val();
-
-            var vGenderValue = $("#gender-radios").val();
-            var vGenderText = $("#gender-radios").selected().text();
-
-            var vJobTitleValue = $("#job-title").selected().val();
-            var vJobTitleText = $("#job-title").selected().text();
-
-            var vSkillsValue = $("#checkbox - skills").selected().val();
-            var vSkillsText = $("#checkbox - skills").selected().text();
-
-
-            var tr = "<tr><td>First Name</td>";
-            tr += "<td>Last Name</td>";
-            tr += "<td>Gender</td>";
-            tr += "<td>Job Title</td>";
-            tr += "<td>Skill</td>";
-            tr += "<td>Activation</td>";
-            tr += "<td>Actions</td></tr>";
-            $(".table-body").append(tr);
-        });
     });
+
+    $(".btn-save").click(function () {
+        var vId = $(".table-body").children().length + 1;
+        var vFirstName = $("#first-name").val();
+        var vLastName = $("#last-name").val();
+
+        var vGenderValue = $("#gender-radios input[type='radio']:checked").val();
+
+        var vJobTitleValue = $("#job-title").val();
+        var vJobTitleText = $("#job-title :selected").text();
+
+        var vSkillsValue = [];
+        var vSkillsText = [];
+
+        $('#checkbox-skills input[type=checkbox]:checked').each(function () {
+            vSkillsValue.push($(this).val());
+            vSkillsText.push($(this).parent().text());
+        });
+
+        var vActived = false;
+        if ($("#activation-checkbox").is(":checked")) {
+            vActived = true;
+        }
+        
+        var tr = "<tr><td class='list-first-name'>" + vFirstName + "</td>";
+        tr += "<td class='list-last-name'>" + vLastName + "</td>";
+        tr += "<td class='list-gender'>" + vGenderValue + "</td>";
+        tr += "<td class='list-job-title' data-id='" + vJobTitleValue + "'>" + vJobTitleText + "</td>";
+        tr += "<td class='list-skills' data-id='" + vSkillsValue + "'>" + vSkillsText + "</td>";
+        tr += "<td class='list-actived'>" + vActived + "</td>";
+        tr += '<td><div class="btn-group btn-group-sm btn-group-solid">' +
+                '<button type="button" class="btn btn-edit btn-warning" data-id="' + vId + '"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>' +
+                '<button type="button" class="btn btn-delete btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>' +
+                '</div></td></tr>';
+
+        if (selectedId == 0) {
+            $(".table-body").append(tr);
+        }
+        selectedId = 0;
+    });
+
+    $(".table-body").on("click", ".btn-edit", function () {
+        selectedId = parseInt($(this).attr("data-id"));
+    });
+
+    //$(".btn-edit").click(function () {
+    //    alert('masuk');
+    //    //selectedId = parseInt($(this).attr("data-id"));
+    //    //alert(selectedId);
+    //});
 </script>
