@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Case Study 1</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.1.1.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Case Study 1</h2>
+        <hr />
+        <h3>Detail of Employee</h3>
+        <button type="button" class="btn btn-primary btn-create">Create New</button>
+        <form role="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input id="first-name" name="first-name" type="text" class="form-control" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input id="last-name" name="last-name" type="text" class="form-control" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender-radios">Gender</label>
+                        <div id="gender-radios" name="gender-radios">
+                            <label class="checkbox-inline"><input type="radio" name="gender-radios" id="1" value="Male"> Male</label>
+                            <label class="checkbox-inline"><input type="radio" name="gender-radios" id="0" value="Female"> Female</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Job Title</label>
+                        <select class="form-control" id="job-title">
+                            <option value='0'>Select Job Title</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkbox-skills">Skills</label>
+                        <div id="checkbox-skills" name="checkbox-skills">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="activation-checkbox">Activation</label>
+                        <div id="activation-checkbox" name="activation-checkbox">
+                            <label class="checkbox-inline"><input type="checkbox" name="activation-checkbox"> Actived</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button type="button" class="btn btn-success btn-save">Save</button>
+        <button type="button" class="btn btn-warning btn-cancel">Cancel</button>
+        <hr />
+        <h3>List of Employees</h3>
+        <table class="table table-striped">
+            <caption>List of Employees</caption>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Job Title</th>
+                    <th>Skill</th>
+                    <th>Activation</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $.getJSON("Data/jobtitles.json", function (data) {
+            var optJobs = [];
+            $.each(data, function (key, val) {
+                optJobs.push('<option value=' + val.ID + '>' + val.JobTitle + '</option>');
+            });
+            $("#job-title").append(optJobs);
+        });
+
+        $.getJSON("Data/skills.json", function (data) {
+            var cbSkills = [];
+            $.each(data, function (key, val) {
+                cbSkills.push('<label class="checkbox-inline" style="padding-right:20px;"><input type="checkbox" id="inlineCheckbox' + val.ID + '" value="option' + val.ID + '">' + val.Skill + '</label>');
+            });
+            $("#checkbox-skills").append(cbSkills);
+        });
+
+        $(".btn-create").click(function () {
+            $("#first-name").val("");
+            $("#last-name").val("");
+            $("#job-title").val("0");
+            //$(this).attr('disabled', 'disabled');
+        });
+
+        $(".btn-save").click(function () {
+            var vFirstName = $("#first-name").val();
+            var vLastName = $("#last-name").val();
+
+            var vGenderValue = $("#gender-radios").val();
+            var vGenderText = $("#gender-radios").selected().text();
+
+            var vJobTitleValue = $("#job-title").selected().val();
+            var vJobTitleText = $("#job-title").selected().text();
+
+            var vSkillsValue = $("#checkbox - skills").selected().val();
+            var vSkillsText = $("#checkbox - skills").selected().text();
+
+
+            var tr = "<tr><td>First Name</td>";
+            tr += "<td>Last Name</td>";
+            tr += "<td>Gender</td>";
+            tr += "<td>Job Title</td>";
+            tr += "<td>Skill</td>";
+            tr += "<td>Activation</td>";
+            tr += "<td>Actions</td></tr>";
+            $(".table-body").append(tr);
+        });
+    });
+</script>
