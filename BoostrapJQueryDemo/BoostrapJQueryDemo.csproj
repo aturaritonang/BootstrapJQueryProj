@@ -92,6 +92,12 @@
     <Content Include="25ButtonTags.html" />
     <Content Include="26Images.html" />
     <Content Include="27HelperClasses.html" />
+    <Content Include="29ResponsiveUtilities.html" />
+    <Content Include="30Glyphicons.html" />
+    <Content Include="31Dropdowns.html" />
+    <Content Include="32ButtonGroups.html" />
+    <Content Include="33ButtonDropdowns.html" />
+    <Content Include="34InputGroups.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
