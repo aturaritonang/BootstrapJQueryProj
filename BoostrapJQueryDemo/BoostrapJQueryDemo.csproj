@@ -98,6 +98,9 @@
     <Content Include="32ButtonGroups.html" />
     <Content Include="33ButtonDropdowns.html" />
     <Content Include="34InputGroups.html" />
+    <Content Include="35NavigationElements.html" />
+    <Content Include="36Navbar.html" />
+    <Content Include="37FixedNavbar.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
