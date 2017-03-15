@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Case Study 2</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.1.1.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Case Study 2</h2>
+        <!--<div id="exTab3" class="container">-->
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#Emplyee-Detail" data-toggle="tab">Details</a>
+                </li>
+                <li>
+                    <a href="#Formula-Bonus" data-toggle="tab">Bonus Formula</a>
+                </li>
+            </ul>
+            <div class="tab-content clearfix">
+                <div class="tab-pane active" id="Emplyee-Detail">
+                </div>
+                <div class="tab-pane" id="Formula-Bonus">
+                </div>
+            </div>
+        <!--</div>-->
+    </div>
+</body>
+</html>
+<script>
+    var vListFormula = [];
+
+    $(document).ready(function () {
+        $("#Emplyee-Detail").load("38-1Details.html");
+        $("#Formula-Bonus").load("38-2FormulaBonus.html");
+        setTimeout(function () {
+            LoadFormulaBonus();
+        }, 1000);
+    });
+
+    function LoadFormulaBonus() {
+        $.getJSON("Data/formula-bonus.json", function (data) {
+            var tblListFormula = [];
+            
+            $.each(data, function (key, val) {
+                //var itemFormula = { Grade: val.Grade, Form: val.From, To: val.To, Multiply: val.Multiply };
+                vListFormula.push(val);
+
+                var str = '<tr>' +
+                    '<td>' + val.Grade + '</td>' +
+                    '<td><input type="number" class="formula-item" style="text-align:right;" name="formula-from" value="' + val.From + '" hidden="hidden"/><span class="formula-item">' + val.From + '</span></td>' +
+                    '<td><input type="number" class="formula-item" style="text-align:right;" name="formula-to" value="' + val.To + '" hidden="hidden"/><span class="formula-item">' + val.To + '</span></td>' +
+                    '<td><input type="number" class="formula-item" style="text-align:right;" name="formula-multiply" value="' + (val.Multiply).toFixed(2) + '" hidden="hidden"/><span class="formula-item">' + (val.Multiply).toFixed(2) + '</span></td>' +
+                    '</tr>';
+
+                tblListFormula.push(str);
+            });
+
+            $(".formula-body").append(tblListFormula);
+
+        });
+    }
+
+</script>
+<style>
+    .formula-body td, .formula-header th {
+        text-align: center;
+    }
+
+    .formula-body input
+    {
+        max-width: 75px;
+    }
+</style>
