@@ -133,6 +133,7 @@
     <Content Include="Data\jobtitles.json" />
     <Content Include="Data\skills.json" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\custom\employee-bonus.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
